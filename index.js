@@ -264,7 +264,7 @@ app.post('/actions', (req, res) => {
     //   'Content-Type' : 'application/json',
     //   'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
     // };
-    request.post(url: 'https://slack.com/api/chat.postMessage', form: data, function (error, response, body) {
+    request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       res.json();
       console.log(response.body);
     });
