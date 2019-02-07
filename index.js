@@ -42,7 +42,7 @@ app.post('/optin', (req, res) => {
     state: "Limo",
     elements: [
       {
-        label: "Chose an interest 1",
+        label: "Choose an interest 1",
         name: "interests1",
         type: "select",
         "option_groups": [
@@ -69,13 +69,34 @@ app.post('/optin', (req, res) => {
               {
                 "label": "Coffee",
                 "value": "coffee"
+              },
+              {
+                "label": "Boba",
+                "value": "boba"
               }
             ]
           },
+          {
+              "label": "Hobbies",
+              "options": [
+                {
+                  "label": "Fire Dancing",
+                  "value": "fire_dancing"
+                },
+                {
+                  "label": "Photography",
+                  "value": "photography"
+                },
+                {
+                  "label": "Cars",
+                  "value": "cars"
+                }
+              ]
+            }
         ]
         },
         {
-          label: "Chose an interest 2",
+          label: "Choose an interest 2",
           name: "interests2",
           type: "select",
           "option_groups": [
@@ -102,13 +123,34 @@ app.post('/optin', (req, res) => {
                 {
                   "label": "Coffee",
                   "value": "coffee"
+                },
+                {
+                  "label": "Boba",
+                  "value": "boba"
                 }
               ]
             },
+            {
+              "label": "Hobbies",
+              "options": [
+                {
+                  "label": "Fire Dancing",
+                  "value": "fire_dancing"
+                },
+                {
+                  "label": "Photography",
+                  "value": "photography"
+                },
+                {
+                  "label": "Cars",
+                  "value": "cars"
+                }
+              ]
+            }
           ]
         },
         {
-          label: "Chose an interest 3",
+          label: "Choose an interest 3",
           name: "interests3",
           type: "select",
           "option_groups": [
@@ -135,6 +177,10 @@ app.post('/optin', (req, res) => {
                 {
                   "label": "Coffee",
                   "value": "coffee"
+                },
+                {
+                  "label": "Boba",
+                  "value": "boba"
                 }
               ]
             },
@@ -161,17 +207,26 @@ app.post('/optin', (req, res) => {
   };
 
   var data = {
-  trigger_id: req.body.trigger_id,
-  dialog: JSON.stringify(form)
-};
-var headers = {
-    'Content-Type' : 'application/json',
-    'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
-};
+    trigger_id: req.body.trigger_id,
+    dialog: JSON.stringify(form)
+  };
+  var headers = {
+      'Content-Type' : 'application/json',
+      'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+  };
   request.post({url: 'https://slack.com/api/dialog.open', form: data, headers: headers}, function (error, response, body) {
     res.json();
-    console.log(response.body)
+    console.log(response.body);
   });
+});
+
+app.post('/actions', (req, res) => {
+  const payload = JSON.parse(req.body.payload);
+  const {type, user, submission} = payload;
+  if (type === 'dialog_submission') {
+    console.log(payload);
+    res.send('');
+  }
 });
 
 app.post('/signup', (req, res) => {
