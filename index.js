@@ -42,8 +42,8 @@ app.post('/optin', (req, res) => {
     state: "Limo",
     elements: [
       {
-        label: "Chose an interest 1",
-        name: "interests1",
+        label: "Choose a first interest",
+        name: "interest1",
         type: "select",
           "option_groups": [
             {
@@ -165,8 +165,8 @@ app.post('/optin', (req, res) => {
           ]
         },
         {
-          label: "Chose an interest 2",
-          name: "interests2",
+          label: "Choose a second interest",
+          name: "interest2",
           type: "select",
           "option_groups": [
             {
@@ -288,8 +288,8 @@ app.post('/optin', (req, res) => {
           ]
           },
         {
-          label: "Chose an interest 3",
-          name: "interests3",
+          label: "Choose a third interest",
+          name: "interest3",
           type: "select",
           "option_groups": [
             {
