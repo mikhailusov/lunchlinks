@@ -475,7 +475,7 @@ app.post('/actions', (req, res) => {
     //   console.log(response.body)
     // });
     var data = {form: {
-      token: "xoxb-543226806466-543395774912-xcCe7Vj2DLKVCBoM5DUoyzAo",
+      token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
       text: "Hi! :wave: \n I'm your new bot."
     }};
