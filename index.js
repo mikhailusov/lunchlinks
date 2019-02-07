@@ -477,6 +477,8 @@ app.post('/actions', (req, res) => {
     var data = {form: {
       token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
+      as_user: false,
+      username: "lunchlinks",
       text: "Hi! :wave: \n I'm your new bot."
     }};
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
