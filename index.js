@@ -229,6 +229,7 @@ app.post('/actions', (req, res) => {
     var interest3 = submission.interest3;
     var name = user.name;
     var data = {
+      token: process.env.SLACK_AUTH_TOKEN,
       message: {
           channel: user.id,
           text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
@@ -258,7 +259,11 @@ app.post('/actions', (req, res) => {
           ]
         }
     };
-    request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
+    // var headers = {
+    //   'Content-Type' : 'application/json',
+    //   'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    // };
+    request.post({url: 'https://slack.com/api/chat.postMessage', form: data}, function (error, response, body) {
       res.json();
       console.log(response.body);
     });
