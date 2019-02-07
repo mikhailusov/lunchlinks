@@ -33,9 +33,8 @@ app.post('/', (req, res) => {
 });
 
 app.post('/optin', (req, res) => {
-  var data = {
-  trigger_id: req.trigger_id,
-  dialog: {
+
+  var form = {
     callback_id: "ryde-46e2b0",
     title: "Request a Ride",
     submit_label: "Request",
@@ -53,7 +52,11 @@ app.post('/optin', (req, res) => {
             name: "loc_destination"
         }
     ]
-  }
+  };
+
+  var data = {
+  trigger_id: req.trigger_id,
+  dialog: JSON.stringify(form)
 };
 var headers = {
     'Content-Type' : 'application/json',
@@ -208,7 +211,8 @@ app.post('/signup', (req, res) => {
   })
   .then((res) => {
     console.log('Message posted!');
-    console.log(res)
+    console.log(res
+    )
   })
   .catch(console.error);
 });
