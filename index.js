@@ -209,7 +209,7 @@ app.post('/optin', (req, res) => {
       ]
     }
   };
-};
+
 var headers = {
     'Content-Type' : 'application/json',
     'Authorization': process.env.SLACK_AUTH_TOKEN
@@ -217,4 +217,6 @@ var headers = {
 request.post({url: 'https://slack.com/api/dialog.open', form: data, headers: headers}, function (error, response, body) {
   res.json();
   console.log(response.body)
+});
+
 });
