@@ -177,6 +177,7 @@ app.post('/signup', (req, res) => {
             }
           ]
         }
+<<<<<<< HEAD
       ]
   })
   .then((res) => {
@@ -208,10 +209,12 @@ app.post('/optin', (req, res) => {
       ]
     }
   };
-  request.post('https://slack.com/api/dialog.open', data, function (error, response, body) {
-    // Sends welcome message
-    res.json();
-    console.log(response.body)
-  });
-  Use the `chat.postMessage` method to send a message from this app
+};
+var headers = {
+    'Content-Type' : 'application/json',
+    'Authorization': process.env.SLACK_AUTH_TOKEN
+};
+request.post({url: 'https://slack.com/api/dialog.open', form: data, headers: headers}, function (error, response, body) {
+  res.json();
+  console.log(response.body)
 });
