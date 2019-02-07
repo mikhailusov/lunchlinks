@@ -430,6 +430,7 @@ app.post('/optin', (req, res) => {
 app.post('/actions', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const {type, user, submission} = payload;
+  console.log(submission);
   if (type === 'dialog_submission') {
     var interest1 = submission.interest1;
     var interest2 = submission.interest2;
@@ -508,7 +509,6 @@ app.post('/actions', (req, res) => {
         console.log(response.body);
       });
     }
-    console.log(payload);
   }
 });
 
