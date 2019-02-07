@@ -106,6 +106,56 @@ app.post('/optin', (req, res) => {
               ]
             },
           ]
+        },
+        {
+          label: "Chose an interest 3",
+          name: "interests3",
+          type: "select",
+          "option_groups": [
+            {
+              "label": "Pets",
+              "options": [
+                {
+                  "label": "Cats",
+                  "value": "cats"
+                },
+                {
+                  "label": "Dogs",
+                  "value": "dogs"
+                }
+              ]
+            },
+            {
+              "label": "Food",
+              "options": [
+                {
+                  "label": "Asian",
+                  "value": "asian"
+                },
+                {
+                  "label": "Coffee",
+                  "value": "coffee"
+                }
+              ]
+            },
+            {
+              "label": "Hobbies",
+              "options": [
+                {
+                  "label": "Fire Dancing",
+                  "value": "fire_dancing"
+                },
+                {
+                  "label": "Photography",
+                  "value": "photography"
+                },
+                {
+                  "label": "Cars",
+                  "value": "cars"
+                }
+              ]
+            }
+          ]
           }
     ]
   };
