@@ -459,20 +459,30 @@ app.post('/actions', (req, res) => {
               ]
             }
           ];
-    var data = {
+    // var data = {
+    //   channel: user.id,
+    //   message: {
+    //       text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+    //       attachments: attachments
+    //     }
+    // };
+    // var headers = {
+    //     'Content-Type' : 'application/json',
+    //     'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    // };
+    // request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
+    //   res.json();
+    //   console.log(response.body)
+    // });
+    var data = {form: {
+      token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
-      message: {
-          text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
-          attachments: attachments
-        }
-    };
-    var headers = {
-        'Content-Type' : 'application/json',
-        'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
-    };
-    request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
+      text: "Hi! :wave: \n I'm your new bot."
+    }};
+    request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+      // Sends welcome message
       res.json();
-      console.log(response.body)
+      // console.log(response)
     });
   } else if (type === 'interactive_message') {
     res.send('');
