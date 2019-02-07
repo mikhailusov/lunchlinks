@@ -31,6 +31,7 @@ app.post('/', (req, res) => {
 
 app.post('/optin', (req, res) => {
   var data = {
+  token: process.env.SLACK_AUTH_TOKEN,  
   trigger_id: req.trigger_id,
   dialog: {
     callback_id: "ryde-46e2b0",
