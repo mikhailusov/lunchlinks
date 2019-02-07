@@ -177,11 +177,11 @@ app.post('/signup', (req, res) => {
             }
           ]
         }
-<<<<<<< HEAD
       ]
   })
   .then((res) => {
     console.log('Message posted!');
+    console.log(res.body);
   })
   .catch(console.error);
 })
