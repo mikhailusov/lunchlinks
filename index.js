@@ -28,3 +28,33 @@ app.post('/', (req, res) => {
     // console.log(response)
   });
 });
+
+app.post('/optin', (req, res) => {
+  var data = {
+  trigger_id: req.trigger_id,
+  dialog: {
+    callback_id: "ryde-46e2b0",
+    title: "Request a Ride",
+    submit_label: "Request",
+    notify_on_cancel: true,
+    state: "Limo",
+    elements: [
+        {
+            type: "text",
+            label: "Pickup Location",
+            name: "loc_origin"
+        },
+        {
+            type: "text",
+            label: "Dropoff Location",
+            name: "loc_destination"
+        }
+    ]
+  }
+};
+  request.post('https://slack.com/api/dialog.open', data, function (error, response, body) {
+    // Sends welcome message
+    res.json();
+    console.log(response.body)
+  });
+});
