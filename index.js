@@ -224,8 +224,46 @@ app.post('/actions', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const {type, user, submission} = payload;
   if (type === 'dialog_submission') {
-    console.log(payload);
+    var interest1 = submission.interest1;
+    var interest2 = submission.interest2;
+    var interest3 = submission.interest3;
+    var name = user.name;
+    var data = {
+      message: {
+          text: `Hello! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+          attachments: [
+            {
+              "fallback": "You are unable to respond",
+              "callback_id": "notify",
+              "color": "#3AA3E3",
+              "attachment_type": "default",
+              "actions": [
+                {
+                  "name": "Accept",
+                  "text": "Accept",
+                  "type": "button",
+                  "style": "danger",
+                  "value": "accept"
+                },
+                {
+                  "name": "Decline",
+                  "text": "Decline",
+                  "type": "button",
+                  "style": "default",
+                  "value": "decline"
+                }
+              ]
+            }
+          ]
+        }
+    };
+    request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
+      res.json();
+      console.log(response.body);
+    });
+  } else if (type === 'interactive_message') {
     res.send('');
+    console.log(payload);
   }
 });
 
