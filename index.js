@@ -228,12 +228,7 @@ app.post('/actions', (req, res) => {
     var interest2 = submission.interest2;
     var interest3 = submission.interest3;
     var name = user.name;
-    var data = {
-      token: process.env.SLACK_AUTH_TOKEN,
-      message: {
-          channel: user.id,
-          text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
-          attachments: [
+    var attachments = [
             {
               "fallback": "You are unable to respond",
               "callback_id": "notify",
@@ -256,7 +251,13 @@ app.post('/actions', (req, res) => {
                 }
               ]
             }
-          ]
+          ];
+    var data = {
+      token: process.env.SLACK_AUTH_TOKEN,
+      message: {
+          channel: user.id,
+          text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+          attachments: attachments
         }
     };
     // var headers = {
