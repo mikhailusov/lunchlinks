@@ -163,253 +163,253 @@ app.post('/optin', (req, res) => {
               ]
             }
           ]
-        },
-        {
-          label: "Chose an interest 2",
-          name: "interests2",
-          type: "select",
-          "option_groups": [
-            {
-              "label": "Pets",
-              "options": [
-                {
-                  "label": "Cats",
-                  "value": "cats"
-                },
-                {
-                  "label": "Dogs",
-                  "value": "dogs"
-                },
-                {
-                  "label": "Fish",
-                  "value": "fish"
-                }
-              ]
-            },
-            {
-              "label": "Food",
-              "options": [
-                {
-                  "label": "Asian",
-                  "value": "asian"
-                },
-                {
-                  "label": "Boba",
-                  "value": "boba"
-                },
-                {
-                  "label": "Coffee",
-                  "value": "coffee"
-                },
-                {
-                  "label": "Italian",
-                  "value": "italian"
-                },
-                {
-                  "label": "Mexican",
-                  "value": "mexican"
-                }
-              ]
-            },
-            {
-              "label": "Hobbies",
-              "options": [
-                {
-                  "label": "Card Games",
-                  "value": "card_games"
-                },
-                {
-                  "label": "Cars",
-                  "value": "cars"
-                },
-                {
-                  "label": "Fire Dancing",
-                  "value": "fire_dancing"
-                },
-                {
-                  "label": "Music",
-                  "value": "music"
-                },
-                {
-                  "label": "Photography",
-                  "value": "photography"
-                },
-                {
-                  "label": "Pixar Movies",
-                  "value": "pixar_movies"
-                },
-                {
-                  "label": "Reading",
-                  "value": "reading"
-                },
-                {
-                  "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
-                },
-                {
-                  "label": "Video Games",
-                  "value": "video_games"
-                },
-                {
-                  "label": "Volunteering",
-                  "value": "volunteering"
-                },
-                {
-                  "label": "Watches",
-                  "value": "watches"
-                },
-                {
-                  "label": "Wrestling",
-                  "value": "wrestling"
-                }
-              ]
-            },
-            {
-              "label": "Professional Skills",
-              "options": [
-                {
-                  "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
-                },
-                {
-                  "label": "Facilitation",
-                  "value": "facilitation"
-                },
-                {
-                  "label": "ML/AI",
-                  "value": "ml_ai"
-                },
-                {
-                  "label": "Public Speaking",
-                  "value": "public_speaking"
-                }
-              ]
-            }
-          ]
-          },
-        {
-          label: "Chose an interest 3",
-          name: "interests3",
-          type: "select",
-          "option_groups": [
-            {
-              "label": "Pets",
-              "options": [
-                {
-                  "label": "Cats",
-                  "value": "cats"
-                },
-                {
-                  "label": "Dogs",
-                  "value": "dogs"
-                },
-                {
-                  "label": "Fish",
-                  "value": "fish"
-                }
-              ]
-            },
-            {
-              "label": "Food",
-              "options": [
-                {
-                  "label": "Asian",
-                  "value": "asian"
-                },
-                {
-                  "label": "Boba",
-                  "value": "boba"
-                },
-                {
-                  "label": "Coffee",
-                  "value": "coffee"
-                },
-                {
-                  "label": "Italian",
-                  "value": "italian"
-                },
-                {
-                  "label": "Mexican",
-                  "value": "mexican"
-                }
-              ]
-            },
-            {
-              "label": "Hobbies",
-              "options": [
-                {
-                  "label": "Card Games",
-                  "value": "card_games"
-                },
-                {
-                  "label": "Cars",
-                  "value": "cars"
-                },
-                {
-                  "label": "Fire Dancing",
-                  "value": "fire_dancing"
-                },
-                {
-                  "label": "Music",
-                  "value": "music"
-                },
-                {
-                  "label": "Photography",
-                  "value": "photography"
-                },
-                {
-                  "label": "Pixar Movies",
-                  "value": "pixar_movies"
-                },
-                {
-                  "label": "Reading",
-                  "value": "reading"
-                },
-                {
-                  "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
-                },
-                {
-                  "label": "Video Games",
-                  "value": "video_games"
-                },
-                {
-                  "label": "Volunteering",
-                  "value": "volunteering"
-                },
-                {
-                  "label": "Watches",
-                  "value": "watches"
-                },
-                {
-                  "label": "Wrestling",
-                  "value": "wrestling"
-                }
-              ]
-            },
-            {
-              "label": "Professional Skills",
-              "options": [
-                {
-                  "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
-                },
-                {
-                  "label": "Facilitation",
-                  "value": "facilitation"
-                },
-                {
-                  "label": "ML/AI",
-                  "value": "ml_ai"
-                },
-                {
-                  "label": "Public Speaking",
-                  "value": "public_speaking"
-                }
-              ]
-            }
-          ]
-          }
+        }
+        // {
+        //   label: "Chose an interest 2",
+        //   name: "interests2",
+        //   type: "select",
+        //   "option_groups": [
+        //     {
+        //       "label": "Pets",
+        //       "options": [
+        //         {
+        //           "label": "Cats",
+        //           "value": "cats"
+        //         },
+        //         {
+        //           "label": "Dogs",
+        //           "value": "dogs"
+        //         },
+        //         {
+        //           "label": "Fish",
+        //           "value": "fish"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Food",
+        //       "options": [
+        //         {
+        //           "label": "Asian",
+        //           "value": "asian"
+        //         },
+        //         {
+        //           "label": "Boba",
+        //           "value": "boba"
+        //         },
+        //         {
+        //           "label": "Coffee",
+        //           "value": "coffee"
+        //         },
+        //         {
+        //           "label": "Italian",
+        //           "value": "italian"
+        //         },
+        //         {
+        //           "label": "Mexican",
+        //           "value": "mexican"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Hobbies",
+        //       "options": [
+        //         {
+        //           "label": "Card Games",
+        //           "value": "card_games"
+        //         },
+        //         {
+        //           "label": "Cars",
+        //           "value": "cars"
+        //         },
+        //         {
+        //           "label": "Fire Dancing",
+        //           "value": "fire_dancing"
+        //         },
+        //         {
+        //           "label": "Music",
+        //           "value": "music"
+        //         },
+        //         {
+        //           "label": "Photography",
+        //           "value": "photography"
+        //         },
+        //         {
+        //           "label": "Pixar Movies",
+        //           "value": "pixar_movies"
+        //         },
+        //         {
+        //           "label": "Reading",
+        //           "value": "reading"
+        //         },
+        //         {
+        //           "label": "Ultimate Frisbee",
+        //           "value": "ultimate_frisbee"
+        //         },
+        //         {
+        //           "label": "Video Games",
+        //           "value": "video_games"
+        //         },
+        //         {
+        //           "label": "Volunteering",
+        //           "value": "volunteering"
+        //         },
+        //         {
+        //           "label": "Watches",
+        //           "value": "watches"
+        //         },
+        //         {
+        //           "label": "Wrestling",
+        //           "value": "wrestling"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Professional Skills",
+        //       "options": [
+        //         {
+        //           "label": "Agile Practicioner",
+        //           "value": "agile_practicioner"
+        //         },
+        //         {
+        //           "label": "Facilitation",
+        //           "value": "facilitation"
+        //         },
+        //         {
+        //           "label": "ML/AI",
+        //           "value": "ml_ai"
+        //         },
+        //         {
+        //           "label": "Public Speaking",
+        //           "value": "public_speaking"
+        //         }
+        //       ]
+        //     }
+        //   ]
+        //   },
+        // {
+        //   label: "Chose an interest 3",
+        //   name: "interests3",
+        //   type: "select",
+        //   "option_groups": [
+        //     {
+        //       "label": "Pets",
+        //       "options": [
+        //         {
+        //           "label": "Cats",
+        //           "value": "cats"
+        //         },
+        //         {
+        //           "label": "Dogs",
+        //           "value": "dogs"
+        //         },
+        //         {
+        //           "label": "Fish",
+        //           "value": "fish"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Food",
+        //       "options": [
+        //         {
+        //           "label": "Asian",
+        //           "value": "asian"
+        //         },
+        //         {
+        //           "label": "Boba",
+        //           "value": "boba"
+        //         },
+        //         {
+        //           "label": "Coffee",
+        //           "value": "coffee"
+        //         },
+        //         {
+        //           "label": "Italian",
+        //           "value": "italian"
+        //         },
+        //         {
+        //           "label": "Mexican",
+        //           "value": "mexican"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Hobbies",
+        //       "options": [
+        //         {
+        //           "label": "Card Games",
+        //           "value": "card_games"
+        //         },
+        //         {
+        //           "label": "Cars",
+        //           "value": "cars"
+        //         },
+        //         {
+        //           "label": "Fire Dancing",
+        //           "value": "fire_dancing"
+        //         },
+        //         {
+        //           "label": "Music",
+        //           "value": "music"
+        //         },
+        //         {
+        //           "label": "Photography",
+        //           "value": "photography"
+        //         },
+        //         {
+        //           "label": "Pixar Movies",
+        //           "value": "pixar_movies"
+        //         },
+        //         {
+        //           "label": "Reading",
+        //           "value": "reading"
+        //         },
+        //         {
+        //           "label": "Ultimate Frisbee",
+        //           "value": "ultimate_frisbee"
+        //         },
+        //         {
+        //           "label": "Video Games",
+        //           "value": "video_games"
+        //         },
+        //         {
+        //           "label": "Volunteering",
+        //           "value": "volunteering"
+        //         },
+        //         {
+        //           "label": "Watches",
+        //           "value": "watches"
+        //         },
+        //         {
+        //           "label": "Wrestling",
+        //           "value": "wrestling"
+        //         }
+        //       ]
+        //     },
+        //     {
+        //       "label": "Professional Skills",
+        //       "options": [
+        //         {
+        //           "label": "Agile Practicioner",
+        //           "value": "agile_practicioner"
+        //         },
+        //         {
+        //           "label": "Facilitation",
+        //           "value": "facilitation"
+        //         },
+        //         {
+        //           "label": "ML/AI",
+        //           "value": "ml_ai"
+        //         },
+        //         {
+        //           "label": "Public Speaking",
+        //           "value": "public_speaking"
+        //         }
+        //       ]
+        //     }
+        //   ]
+        //   }
     ]
   };
 
