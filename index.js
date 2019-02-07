@@ -35,7 +35,7 @@ app.post('/', (req, res) => {
 app.post('/optin', (req, res) => {
 
   var form = {
-    callback_id: "ryde-46e2b0",
+    callback_id: req.body.user_name,
     title: "Join lunchlinks",
     submit_label: "Join",
     notify_on_cancel: true,
@@ -205,7 +205,7 @@ app.post('/optin', (req, res) => {
           }
     ]
   };
-
+  console.log(req.body);
   var data = {
     trigger_id: req.body.trigger_id,
     dialog: JSON.stringify(form)
