@@ -230,7 +230,8 @@ app.post('/actions', (req, res) => {
     var name = user.name;
     var data = {
       message: {
-          text: `Hello! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+          channel: user.id,
+          text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
           attachments: [
             {
               "fallback": "You are unable to respond",
