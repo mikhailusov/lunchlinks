@@ -52,21 +52,13 @@ app.post('/optin', (req, res) => {
     ]
   }
 };
-request({
-    headers: {
-      'Authorization:': process.env.SLACK_AUTH_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    uri: 'https://slack.com/api/dialog.open',
-    body: data,
-    method: 'POST'
-  }, function (error, response, body) {
-      res.json();
-      console.log(response.body)
+var headers = {
+    'Content-Type' : 'application/json',
+    'Authorization:': process.env.SLACK_AUTH_TOKEN
+};
+  request.post({ url: url, form: form, headers: headers }, function (error, response, body) {
+    // Sends welcome message
+    res.json();
+    console.log(response.body)
   });
-  // request.post('https://slack.com/api/dialog.open', data, function (error, response, body) {
-  //   // Sends welcome message
-  //   res.json();
-  //   console.log(response.body)
-  // });
 });
