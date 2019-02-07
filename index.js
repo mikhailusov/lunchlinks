@@ -417,10 +417,10 @@ app.post('/optin', (req, res) => {
   trigger_id: req.body.trigger_id,
   dialog: JSON.stringify(form)
 };
-var headers = {
-    'Content-Type' : 'application/json',
-    'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
-};
+  var headers = {
+      'Content-Type' : 'application/json',
+      'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+  };
   request.post({url: 'https://slack.com/api/dialog.open', form: data, headers: headers}, function (error, response, body) {
     res.json();
     console.log(response.body)
@@ -467,13 +467,13 @@ app.post('/actions', (req, res) => {
           attachments: attachments
         }
     };
-    // var headers = {
-    //   'Content-Type' : 'application/json',
-    //   'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
-    // };
-    request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+    var headers = {
+        'Content-Type' : 'application/json',
+        'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    };
+    request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
       res.json();
-      console.log(response.body);
+      console.log(response.body)
     });
   } else if (type === 'interactive_message') {
     res.send('');
