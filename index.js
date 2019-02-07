@@ -253,8 +253,8 @@ app.post('/actions', (req, res) => {
             }
           ];
     var data = {
-      token: process.env.SLACK_AUTH_TOKEN,
       message: {
+          token: process.env.SLACK_AUTH_TOKEN,
           channel: user.id,
           text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
           attachments: attachments
