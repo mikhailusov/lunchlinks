@@ -482,7 +482,7 @@ app.post('/actions', (req, res) => {
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       // Sends welcome message
       res.json();
-      // console.log(response)
+      console.log(response)
     });
   } else if (type === 'interactive_message') {
     res.send('');
