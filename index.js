@@ -3,6 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require("request");
+const { WebClient} = require('@slack/client');
+const token = process.env.SLACK_AUTH_TOKEN;
+const web = new WebClient(token);
 
 // Creates express app
 const app = express();
@@ -60,4 +63,149 @@ var headers = {
     res.json();
     console.log(response.body)
   });
+});
+
+app.post('/signup', (req, res) => {
+  return web.chat.postMessage({
+      channel: res.user_id,
+      text: "To help me match you with other AppDynamos, please select all the interests you would like to be matched on.",
+      attachments: [
+        {
+          "text": "Food",
+          "fallback": "You are unable to select an interest",
+          "callback_id": "interests",
+          "color": "#3AA3E3",
+          "attachment_type": "default",
+          "actions": [
+            {
+              "name": "interest",
+              "text": "boba",
+              "type": "button",
+              "value": "boba"
+            },
+            {
+              "name": "interest",
+              "text": "coffee",
+              "type": "button",
+              "value": "coffee"
+            }
+          ]
+        },
+        {
+          "text": "Pets",
+          "fallback": "You are unable to select an interest",
+          "callback_id": "interests",
+          "color": "#3AA3E3",
+          "attachment_type": "default",
+          "actions": [
+            {
+              "name": "interest",
+              "text": "cats",
+              "type": "button",
+              "value": "cats"
+            },
+            {
+              "name": "interest",
+              "text": "dogs",
+              "type": "button",
+              "value": "dogs"
+            }
+          ]
+        },
+        {
+          "text": "Hobbies",
+          "fallback": "You are unable to select an interest",
+          "callback_id": "interests",
+          "color": "#3AA3E3",
+          "attachment_type": "default",
+          "actions": [
+            {
+              "name": "interest",
+              "text": "fire dancing",
+              "type": "button",
+              "value": "fire_dancing"
+            },
+            {
+              "name": "interest",
+              "text": "photography",
+              "type": "button",
+              "value": "photography"
+            },
+            {
+              "name": "interest",
+              "text": "pixar",
+              "type": "button",
+              "value": "pixar"
+            },
+            {
+              "name": "interest",
+              "text": "reading",
+              "type": "button",
+              "value": "reading"
+            },
+            {
+              "name": "interest",
+              "text": "ultimate frisbee",
+              "type": "button",
+              "value": "ultimate_frisbee"
+            },
+            {
+              "name": "interest",
+              "text": "video games",
+              "type": "button",
+              "value": "boba"
+            },
+            {
+              "name": "interest",
+              "text": "volunteering",
+              "type": "button",
+              "value": "volunteering"
+            },
+            {
+              "name": "interest",
+              "text": "watches",
+              "type": "button",
+              "value": "watches"
+            },
+            {
+              "name": "interest",
+              "text": "wine tasting",
+              "type": "button",
+              "value": "wine_tasting"
+            },
+            {
+              "name": "interest",
+              "text": "wrestling",
+              "type": "button",
+              "value": "wrestling"
+            }
+          ]
+        },
+        {
+          "text": "Professional skills",
+          "fallback": "You are unable to select an interest",
+          "callback_id": "interests",
+          "color": "#3AA3E3",
+          "attachment_type": "default",
+          "actions":[
+            {
+              "name": "interest",
+              "text": "ML/AI",
+              "type": "button",
+              "value": "ML/AI"
+            },
+            {
+              "name": "interest",
+              "text": "public speaking",
+              "type": "button",
+              "value": "public_speaking"
+            }
+          ]
+        }
+      ]
+  })
+  .then((res) => {
+    console.log('Message posted!');
+  })
+  .catch(console.error);
 });
