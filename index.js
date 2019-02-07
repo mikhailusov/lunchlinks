@@ -479,7 +479,10 @@ app.post('/actions', (req, res) => {
       channel: user.id,
       as_user: false,
       username: "lunchlinks",
-      text: "Hi! :wave: \n I'm your new bot."
+      message: {
+        text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+        attachments: attachments
+      }
     }};
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       // Sends welcome message
