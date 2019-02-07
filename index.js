@@ -25,5 +25,6 @@ app.post('/', (req, res) => {
   request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
     // Sends welcome message
     res.json();
+    console.log("message sent");
   });
 });
