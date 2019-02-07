@@ -36,21 +36,77 @@ app.post('/optin', (req, res) => {
 
   var form = {
     callback_id: "ryde-46e2b0",
-    title: "Request a Ride",
-    submit_label: "Request",
+    title: "Join lunchlinks",
+    submit_label: "Join",
     notify_on_cancel: true,
     state: "Limo",
     elements: [
-        {
-            type: "text",
-            label: "Pickup Location",
-            name: "loc_origin"
+      {
+        label: "Chose an interest",
+        name: "interests",
+        type: "select",
+        "option_groups": [
+          {
+            "label": "Pets",
+            "options": [
+              {
+                "label": "Cats",
+                "value": "cats"
+              },
+              {
+                "label": "Dogs",
+                "value": "dogs"
+              }
+            ]
+          },
+          {
+            "label": "Food",
+            "options": [
+              {
+                "label": "Asian",
+                "value": "asian"
+              },
+              {
+                "label": "Coffee",
+                "value": "coffee"
+              }
+            ]
+          },
+        ]
         },
         {
-            type: "text",
-            label: "Dropoff Location",
-            name: "loc_destination"
-        }
+          label: "Chose an interest",
+          name: "interests",
+          type: "select",
+          "option_groups": [
+            {
+              "label": "Pets",
+              "options": [
+                {
+                  "label": "Cats",
+                  "value": "cats"
+                },
+                {
+                  "label": "Dogs",
+                  "value": "dogs"
+                }
+              ]
+            },
+            {
+              "label": "Food",
+              "options": [
+                {
+                  "label": "Asian",
+                  "value": "asian"
+                },
+                {
+                  "label": "Coffee",
+                  "value": "coffee"
+                }
+              ]
+            },
+          ]
+          }
     ]
   };
 
