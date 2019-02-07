@@ -208,7 +208,7 @@ app.post('/signup', (req, res) => {
   })
   .then((res) => {
     console.log('Message posted!');
-    console.log(res.body)
+    console.log(res)
   })
   .catch(console.error);
 });
