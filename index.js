@@ -159,7 +159,7 @@ app.post('/optin', (req, res) => {
           }
     ]
   };
-
+  console.log(req.body);
   var data = {
   trigger_id: req.body.trigger_id,
   dialog: JSON.stringify(form)
