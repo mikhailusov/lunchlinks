@@ -53,7 +53,7 @@ app.post('/optin', (req, res) => {
         }
     ]
   };
-  console.log(req);
+  console.log(req.body.trigger_id);
   var data = {
   trigger_id: req.trigger_id,
   dialog: JSON.stringify(form)
