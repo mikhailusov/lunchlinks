@@ -67,7 +67,7 @@ var headers = {
 
 app.post('/signup', (req, res) => {
   return web.chat.postMessage({
-      channel: res.user_id,
+      channel: "#lunchlinks",
       text: "To help me match you with other AppDynamos, please select all the interests you would like to be matched on.",
       attachments: [
         {
