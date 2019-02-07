@@ -475,10 +475,10 @@ app.post('/actions', (req, res) => {
     //   console.log(response.body)
     // });
     var data = {form: {
-      // token: process.env.SLACK_AUTH_TOKEN,
-      token: "xoxp-543226806466-543298156240-545263037524-c39d62d6fa04230010dd95370dd070b9",
+      token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
-      text: "Hi! :wave: \n I'm your new bot."
+      text: "Hi! :wave: \n I'm your new bot.",
+      attachments: attachments
     }};
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       // Sends welcome message
