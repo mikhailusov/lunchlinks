@@ -56,7 +56,7 @@ var headers = {
     'Content-Type' : 'application/json',
     'Authorization:': process.env.SLACK_AUTH_TOKEN
 };
-  request.post({ url: url, form: form, headers: headers }, function (error, response, body) {
+  request.post({ url: 'https://slack.com/api/dialog.open', form: data, headers: headers }, function (error, response, body) {
     // Sends welcome message
     res.json();
     console.log(response.body)
