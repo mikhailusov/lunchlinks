@@ -1,2 +1,3 @@
-To run:
-$  SLACK_API_TOKEN=<slack_api_token> python match.py
+To run as a standalone script:
+Paste Slack API token into matching/token.txt
+$ python matching/match.py
