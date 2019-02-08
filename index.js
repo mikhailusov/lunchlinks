@@ -259,14 +259,24 @@ app.post('/actions', (req, res) => {
     // });
     //
     // const spawn = require("child_process").spawn;
-    // const pythonProcess = spawn('python',["matching/match.py", token, user.id, interest1, interest2, interest3]);
+    // var pythonProcess = spawn('python',["matching/match.py", token, user.id, interest1, interest2, interest3]);
     // var match_name = "someone";
     // pythonProcess.stdout.on('data', (match) => {
     //     // Do something with the data returned from matching/match.py
     //     match_name = match;
     //     console.log('ran match algorithm');
     //     console.log(match_name);
-    // });
+    //     var data = {form: {
+    //       token: process.env.SLACK_AUTH_TOKEN,
+    //       channel: user.id,
+    //       text: `Hello ${name}! You have been matched with ${match_name} who shares the following interest with you: ${interest2}. Please accept or decline this match.`,
+    //       attachments: JSON.stringify(attachments)
+    //     }};
+    //     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+    //       // Sends welcome message
+    //       res.json();
+    //       console.log(response.body);
+    //     });
     var data = {form: {
       token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
@@ -278,6 +288,12 @@ app.post('/actions', (req, res) => {
       res.json();
       console.log(response.body);
     });
+
+  pythonProcess.stdout.on('end', function(){
+        // responds with 'this.file.name.comes.out.backwards'
+        console.log("python end");
+  });
+
   } else if (type === 'interactive_message') {
     var reply = payload.actions[0].value;
     if (reply === 'accept') {
