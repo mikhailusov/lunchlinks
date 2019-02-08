@@ -254,8 +254,8 @@ app.post('/actions', (req, res) => {
       console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    var reply = payload.actions[0][value];
-    if (reply === 'yes') {
+    var reply = payload.actions[0].value;
+    if (reply === 'accept') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
         channel: user.id,
@@ -265,7 +265,7 @@ app.post('/actions', (req, res) => {
         res.json();
         console.log(response.body);
       });
-    } else if (reply === 'no') {
+    } else if (reply === 'decline') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
         channel: user.id,
