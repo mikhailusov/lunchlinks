@@ -42,8 +42,8 @@ app.post('/optin', (req, res) => {
     state: "Limo",
     elements: [
       {
-        label: "Chose an interest 1",
-        name: "interests1",
+        label: "Choose a first interest",
+        name: "interest1",
         type: "select",
           "option_groups": [
             {
@@ -430,6 +430,7 @@ app.post('/optin', (req, res) => {
 app.post('/actions', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const {type, user, submission} = payload;
+  console.log(payload);
   if (type === 'dialog_submission') {
     var interest1 = submission.interest1;
     var interest2 = submission.interest2;
@@ -443,14 +444,14 @@ app.post('/actions', (req, res) => {
               "attachment_type": "default",
               "actions": [
                 {
-                  "name": "Accept",
+                  "name": "reply",
                   "text": "Accept",
                   "type": "button",
                   "style": "danger",
                   "value": "accept"
                 },
                 {
-                  "name": "Decline",
+                  "name": "reply",
                   "text": "Decline",
                   "type": "button",
                   "style": "default",
@@ -483,11 +484,31 @@ app.post('/actions', (req, res) => {
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       // Sends welcome message
       res.json();
-      console.log(response.body)
+      console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    res.send('');
-    console.log(payload);
+    var reply = submission.reply
+    if (reply === 'yes') {
+      var data = {form: {
+        token: process.env.SLACK_AUTH_TOKEN,
+        channel: user.id,
+        text: `Thank you for your reply, ${name}! You have accepted the match.`
+      }};
+      request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+        res.json();
+        console.log(response.body);
+      });
+    } else {
+      var data = {form: {
+        token: process.env.SLACK_AUTH_TOKEN,
+        channel: user.id,
+        text: `Thank you for your reply, ${name}! You have declined the match.`
+      }};
+      request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+        res.json();
+        console.log(response.body);
+      });
+    }
   }
 });
 
