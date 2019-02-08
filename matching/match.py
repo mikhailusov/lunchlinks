@@ -3,6 +3,7 @@ from slackclient import SlackClient
 import os
 import sys
 import operator
+import unicodedata
 
 CURR_USER_ID = "UFZRUAEUC"
 CURR_USER_NAME = "Michael Ma"
@@ -88,7 +89,6 @@ def get_reply_score():
         curr_channel_history = sc.api_call("channels.history", channel=curr_channel_id)
         messages = curr_channel_history['messages']
 
-        # points for people who reply to you
         for message in messages:
             # a reply message exists and you posted the original message (you're the parent)
             if 'parent_user_id' in message and message['parent_user_id'] == CURR_USER_ID:
@@ -109,6 +109,41 @@ def get_reply_score():
 
     return(normalize_dict(reply_score_dict))
 
+def get_react_score():
+    react_score_dict = {}
+    channels = sc.api_call("channels.list")['channels']
+
+    for channel in channels:
+        curr_channel_id = channel['id']
+        curr_channel_history = sc.api_call("channels.history", channel=curr_channel_id)
+        messages = curr_channel_history['messages']
+
+        for message in messages:
+            # awards points to people who react to you
+            if 'reactions' in message and message['user'] == CURR_USER_ID:
+                reactions_list = message['reactions']
+                for reaction in reactions_list:
+                    users_who_reacted = reaction['users']
+                    for user in users_who_reacted:
+                        if user not in react_score_dict:
+                            react_score_dict[user] = 1
+                        else:
+                            react_score_dict[user] += 1
+
+            # awards points to people you react to
+            if 'reactions' in message:
+                reactions_list = message['reactions']
+                for reaction in reactions_list:
+                        users_who_reacted = reaction['users']
+                        if CURR_USER_ID in users_who_reacted:
+                            user = message['user']
+                            if user not in react_score_dict:
+                                react_score_dict[user] = 1
+                            else:
+                                react_score_dict[user] += 1
+
+    return normalize_dict(react_score_dict)
+
 
 def translate_dictionary(dict):
     new_dict = {}
@@ -118,11 +153,12 @@ def translate_dictionary(dict):
     return new_dict
 
 
-def combine_dictionaries(d1, d2, d3):
+def combine_dictionaries(d1, d2, d3, d4):
     combined_dict = {}
-    weight1 = 0.3
-    weight2 = 0.3
-    weight3 = 0.4
+    weight1 = 0.2
+    weight2 = 0.2
+    weight3 = 0.2
+    weight4 = 0.4
 
     for k in d1:
         combined_dict[k] = weight1 * d1[k]
@@ -130,6 +166,8 @@ def combine_dictionaries(d1, d2, d3):
             combined_dict[k] += weight2 * d2[k]
         if k in d3:
             combined_dict[k] += weight3 * d3[k]
+        if k in d4:
+            combined_dict[k] += weight4 * d4[k]
     return combined_dict
 
 
@@ -144,18 +182,22 @@ def find_best_match():
             continue
 
     # build all feature dictionaries
+    react_score_dict = get_react_score()
     channel_score_dict = get_channel_score()
     reply_score_dict = get_reply_score()
     interest_score_dict = get_interest_score()
 
     # get aggregate dictionary from all the feature dictionaries
-    combined_dict = combine_dictionaries(channel_score_dict, reply_score_dict, interest_score_dict)
+    combined_dict = combine_dictionaries(channel_score_dict, reply_score_dict, react_score_dict, interest_score_dict)
 
+    # translate from user ids to real user names
     final_dict = translate_dictionary(combined_dict)
 
+    # sort in descending order
     desc_order_tuples = sorted(final_dict.items(), key=operator.itemgetter(1), reverse=True)
 
-    ranked_user_names = [tup[0] for tup in desc_order_tuples]
+    # get the names and convert from unicode to string
+    ranked_user_names = [unicodedata.normalize('NFKD', tup[0]).encode('ascii','ignore') for tup in desc_order_tuples]
 
     print(desc_order_tuples)
     print(ranked_user_names)
