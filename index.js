@@ -10,7 +10,7 @@ const web = new WebClient(token);
 // Creates express app
 const app = express();
 // The port used for Express server
-const PORT = 3000;
+const PORT = 4390;
 // Starts server
 app.listen(process.env.PORT || PORT, function() {
   console.log('Bot is listening on port ' + PORT);
@@ -33,19 +33,7 @@ app.post('/', (req, res) => {
 });
 
 app.post('/optin', (req, res) => {
-
-  var form = {
-    callback_id: "ryde-46e2b0",
-    title: "Join lunchlinks",
-    submit_label: "Join",
-    notify_on_cancel: true,
-    state: "Limo",
-    elements: [
-      {
-        label: "Choose a first interest",
-        name: "interest1",
-        type: "select",
-          "option_groups": [
+  var option_groups = [
             {
               "label": "Pets",
               "options": [
@@ -93,7 +81,7 @@ app.post('/optin', (req, res) => {
               "options": [
                 {
                   "label": "Card Games",
-                  "value": "card_games"
+                  "value": "card games"
                 },
                 {
                   "label": "Cars",
@@ -101,7 +89,7 @@ app.post('/optin', (req, res) => {
                 },
                 {
                   "label": "Fire Dancing",
-                  "value": "fire_dancing"
+                  "value": "fire dancing"
                 },
                 {
                   "label": "Music",
@@ -113,7 +101,7 @@ app.post('/optin', (req, res) => {
                 },
                 {
                   "label": "Pixar Movies",
-                  "value": "pixar_movies"
+                  "value": "pixar movies"
                 },
                 {
                   "label": "Reading",
@@ -121,11 +109,11 @@ app.post('/optin', (req, res) => {
                 },
                 {
                   "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
+                  "value": "ultimate frisbee"
                 },
                 {
                   "label": "Video Games",
-                  "value": "video_games"
+                  "value": "video games"
                 },
                 {
                   "label": "Volunteering",
@@ -146,7 +134,7 @@ app.post('/optin', (req, res) => {
               "options": [
                 {
                   "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
+                  "value": "agile practicioner"
                 },
                 {
                   "label": "Facilitation",
@@ -154,11 +142,11 @@ app.post('/optin', (req, res) => {
                 },
                 {
                   "label": "ML/AI",
-                  "value": "ml_ai"
+                  "value": "ML/AI"
                 },
                 {
                   "label": "Public Speaking",
-                  "value": "public_speaking"
+                  "value": "public speaking"
                 }
               ]
             }
@@ -447,14 +435,14 @@ app.post('/actions', (req, res) => {
                   "name": "reply",
                   "text": "Accept",
                   "type": "button",
-                  "style": "danger",
+                  "style": "primary",
                   "value": "accept"
                 },
                 {
                   "name": "reply",
                   "text": "Decline",
                   "type": "button",
-                  "style": "default",
+                  "style": "danger",
                   "value": "decline"
                 }
               ]
@@ -487,7 +475,7 @@ app.post('/actions', (req, res) => {
       console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    var reply = submission.reply
+    var reply = payload.reply
     if (reply === 'yes') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
