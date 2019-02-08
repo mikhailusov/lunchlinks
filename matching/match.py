@@ -22,9 +22,12 @@ def normalize_dict(dict):
     the_max = max(dict.values())
 
     for key, value in dict.iteritems():
-        normalized = (value - the_min) / (the_max - the_min)
-        dict[key] = normalized
-
+        try:
+            normalized = (value - the_min) / (the_max - the_min)
+            dict[key] = normalized
+        except ZeroDivisionError:
+            print("there was a zero division error")
+            dict[key] = 0
     return dict
 
 # TODO: currently the user's interest words are hard-coded. Need to take these keywords from UI
