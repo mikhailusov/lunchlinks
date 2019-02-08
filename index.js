@@ -398,8 +398,8 @@ app.post('/optin', (req, res) => {
         //     }
         //   ]
         //   }
-    ]
-  };
+  //   ]
+  // };
 
   var data = {
   trigger_id: req.body.trigger_id,
