@@ -1,7 +1,10 @@
 from __future__ import division
 from slackclient import SlackClient
 import os
-from collections import defaultdict
+import pprint
+import operator
+
+pp = pprint.PrettyPrinter(indent=4)
 
 CURR_USER_ID = "UFZRUAEUC"
 CURR_USER_NAME = "Michael Ma"
@@ -12,7 +15,19 @@ sc = SlackClient(slack_token)
 user_id_to_name_dict = {}
 user_id_list = []
 
-#### IN THE SAME CHANNELS
+def normalize_dict(dict):
+
+    the_min = min(dict.values())
+    the_max = max(dict.values())
+
+    for key, value in dict.iteritems():
+        normalized = (value - the_min) / (the_max - the_min)
+        dict[key] = normalized
+
+    return dict
+
+
+# award points for people who are in the same channel as you
 def get_channel_score():
     channel_score_dict = {}
     channels = sc.api_call("channels.list")['channels']
@@ -30,24 +45,54 @@ def get_channel_score():
                     channel_score_dict[member_id] = 1
                 else:
                     channel_score_dict[member_id] += 1
+    return normalize_dict(channel_score_dict)
 
-    the_min = min(channel_score_dict.values())
-    the_max = max(channel_score_dict.values())
-
-    for key, value in channel_score_dict.iteritems():
-        normalized = (value - the_min) / (the_max - the_min)
-        channel_score_dict[key] = normalized
-
-    return channel_score_dict
-
-##### NUMBER OF REPLIES
+# award points for when you reply to someone or when others reply to you
 def get_reply_score():
     reply_score_dict = {}
     channels = sc.api_call("channels.list")['channels']
-    print(channels.keys())
+
+    for channel in channels:
+        curr_channel_id = channel['id']
+
+        curr_channel_history = sc.api_call("channels.history", channel=curr_channel_id)
+
+        messages = curr_channel_history['messages']
+
+        # points for people who reply to you
+        for message in messages:
+            # a reply message exists and you posted the original message (you're the parent)
+            if 'parent_user_id' in message and message['parent_user_id'] == CURR_USER_ID:
+                # add points for whoever replies to your message
+                replier_id = message['user']
+                if replier_id not in reply_score_dict:
+                    reply_score_dict[replier_id] = 1
+                else:
+                    reply_score_dict[replier_id] += 1
+
+            # points for when you reply to others (parent is the other person)
+            if 'parent_user_id' in message and message['user'] == CURR_USER_ID:
+                parent_id = message['parent_user_id']
+                if parent_id not in reply_score_dict:
+                    reply_score_dict[parent_id] = 1
+                else:
+                    reply_score_dict[parent_id] += 1
+
+    # print(reply_score_dict)
+    return(normalize_dict(reply_score_dict))
 
 
+def combine_dictionaries(d1, d2):
+    d3 = {}
+    weight1 = 0.5
+    weight2 = 0.5
 
+    for k in d1:
+        if k in d2:
+            d3[k] = weight1 * d1[k] + weight2 * d2[k]
+        else:
+            d3[k] = d1[k] * weight2
+    return d3
 
 def run():
     slack_users_list = sc.api_call("users.list")['members']
@@ -60,12 +105,15 @@ def run():
             continue
 
     channel_score_dict = get_channel_score()
-    # max_id = max(channel_score_dict, key=channel_score_dict.get)
-    get_reply_score()
+    reply_score_dict = get_reply_score()
+
+
+    final_dict = combine_dictionaries(channel_score_dict, reply_score_dict)
+    desc_order_ids = sorted(final_dict.items(), key=operator.itemgetter(1), reverse=True)
+
 
 
 run()
-
 
 
 
