@@ -5,16 +5,14 @@ import sys
 import operator
 import unicodedata
 
-CURR_USER_ID = "UFZRUAEUC"
-CURR_USER_NAME = "Michael Ma"
-INTEREST_KEYWORDS = ["photography", "boba", "pho", "drones"]
 
-# slack_token = os.environ["SLACK_API_TOKEN"]
-f = open('token.txt', 'r')
-x = f.readlines()
-f.close()
-slack_token = x[0]
+
+slack_token = sys.argv[1]
 sc = SlackClient(slack_token)
+
+CURR_USER_ID = sys.argv[2]
+INTEREST_KEYWORDS = [sys.argv[3], sys.argv[4], sys.argv[5]]
+
 
 user_id_to_name_dict = {}
 user_id_list = []
@@ -199,9 +197,10 @@ def find_best_match():
     # get the names and convert from unicode to string
     ranked_user_names = [unicodedata.normalize('NFKD', tup[0]).encode('ascii','ignore') for tup in desc_order_tuples]
 
-    print(desc_order_tuples)
-    print(ranked_user_names)
-    return ranked_user_names
+    # pass the best match name back to index.js
+    print(ranked_user_names[0])
+    sys.stdout.flush()
+
 
 # takes about 15 seconds to run
 find_best_match()
