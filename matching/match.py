@@ -111,6 +111,11 @@ def run():
     final_dict = combine_dictionaries(channel_score_dict, reply_score_dict)
     desc_order_ids = sorted(final_dict.items(), key=operator.itemgetter(1), reverse=True)
 
+    best_match_id = desc_order_ids[1][0]
+    print(best_match_id)
+
+    return(user_id_to_name_dict[best_match_id])
+
 
 
 run()
