@@ -273,7 +273,7 @@ app.post('/actions', (req, res) => {
     var reply = payload.actions[0].value;
     if (reply === 'accept') {
       var data = {form: {
-        token: process.env.SLACK_BOT_TOKEN,
+        token: process.env.SLACK_AUTH_TOKEN,
         channel: user.id,
         text: `Thank you for your reply, ${name}! You have accepted the match.`
       }};
