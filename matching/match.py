@@ -1,13 +1,18 @@
 from __future__ import division
 from slackclient import SlackClient
 import os
+import sys
 import operator
 
 CURR_USER_ID = "UFZRUAEUC"
 CURR_USER_NAME = "Michael Ma"
 INTEREST_KEYWORDS = ["photography", "boba", "pho", "drones"]
 
-slack_token = os.environ["SLACK_API_TOKEN"]
+# slack_token = os.environ["SLACK_API_TOKEN"]
+f = open('token.txt', 'r')
+x = f.readlines()
+f.close()
+slack_token = x[0]
 sc = SlackClient(slack_token)
 
 user_id_to_name_dict = {}
@@ -156,6 +161,7 @@ def find_best_match():
     print(ranked_user_names)
     return ranked_user_names
 
+# takes about 15 seconds to run
 find_best_match()
 
 
