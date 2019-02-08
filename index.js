@@ -259,7 +259,7 @@ app.post('/actions', (req, res) => {
     // });
     //
     const spawn = require("child_process").spawn;
-    const pythonProcess = spawn('python',["matching/match.py", token, user.id, interest1, interest2, interest3]);
+    var pythonProcess = spawn('python',["matching/match.py", token, user.id, interest1, interest2, interest3]);
     var match_name = "someone";
     pythonProcess.stdout.on('data', (match) => {
         // Do something with the data returned from matching/match.py
@@ -278,6 +278,12 @@ app.post('/actions', (req, res) => {
           console.log(response.body);
         });
     });
+
+  pythonProcess.stdout.on('end', function(){
+        // responds with 'this.file.name.comes.out.backwards'
+        console.log("python end");
+  });
+
   } else if (type === 'interactive_message') {
     var reply = payload.actions[0].value;
     if (reply === 'accept') {
