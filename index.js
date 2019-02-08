@@ -289,10 +289,10 @@ app.post('/actions', (req, res) => {
       console.log(response.body);
     });
 
-  pythonProcess.stdout.on('end', function(){
-        // responds with 'this.file.name.comes.out.backwards'
-        console.log("python end");
-  });
+  // pythonProcess.stdout.on('end', function(){
+  //       // responds with 'this.file.name.comes.out.backwards'
+  //       console.log("python end");
+  // });
 
   } else if (type === 'interactive_message') {
     var reply = payload.actions[0].value;
