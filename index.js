@@ -33,6 +33,124 @@ app.post('/', (req, res) => {
 });
 
 app.post('/optin', (req, res) => {
+  var option_groups = [
+            {
+              "label": "Pets",
+              "options": [
+                {
+                  "label": "Cats",
+                  "value": "cats"
+                },
+                {
+                  "label": "Dogs",
+                  "value": "dogs"
+                },
+                {
+                  "label": "Fish",
+                  "value": "fish"
+                }
+              ]
+            },
+            {
+              "label": "Food",
+              "options": [
+                {
+                  "label": "Asian",
+                  "value": "asian"
+                },
+                {
+                  "label": "Boba",
+                  "value": "boba"
+                },
+                {
+                  "label": "Coffee",
+                  "value": "coffee"
+                },
+                {
+                  "label": "Italian",
+                  "value": "italian"
+                },
+                {
+                  "label": "Mexican",
+                  "value": "mexican"
+                }
+              ]
+            },
+            {
+              "label": "Hobbies",
+              "options": [
+                {
+                  "label": "Card Games",
+                  "value": "card games"
+                },
+                {
+                  "label": "Cars",
+                  "value": "cars"
+                },
+                {
+                  "label": "Fire Dancing",
+                  "value": "fire dancing"
+                },
+                {
+                  "label": "Music",
+                  "value": "music"
+                },
+                {
+                  "label": "Photography",
+                  "value": "photography"
+                },
+                {
+                  "label": "Pixar Movies",
+                  "value": "pixar movies"
+                },
+                {
+                  "label": "Reading",
+                  "value": "reading"
+                },
+                {
+                  "label": "Ultimate Frisbee",
+                  "value": "ultimate frisbee"
+                },
+                {
+                  "label": "Video Games",
+                  "value": "video games"
+                },
+                {
+                  "label": "Volunteering",
+                  "value": "volunteering"
+                },
+                {
+                  "label": "Watches",
+                  "value": "watches"
+                },
+                {
+                  "label": "Wrestling",
+                  "value": "wrestling"
+                }
+              ]
+            },
+            {
+              "label": "Professional Skills",
+              "options": [
+                {
+                  "label": "Agile Practicioner",
+                  "value": "agile practicioner"
+                },
+                {
+                  "label": "Facilitation",
+                  "value": "facilitation"
+                },
+                {
+                  "label": "ML/AI",
+                  "value": "ML/AI"
+                },
+                {
+                  "label": "Public Speaking",
+                  "value": "public speaking"
+                }
+              ]
+            }
+          ];
 
   var form = {
     callback_id: "ryde-46e2b0",
@@ -42,374 +160,23 @@ app.post('/optin', (req, res) => {
     state: "Limo",
     elements: [
       {
-        label: "Chose an interest 1",
-        name: "interests1",
+        label: "Choose a first interest",
+        name: "interest1",
         type: "select",
-          "option_groups": [
-            {
-              "label": "Pets",
-              "options": [
-                {
-                  "label": "Cats",
-                  "value": "cats"
-                },
-                {
-                  "label": "Dogs",
-                  "value": "dogs"
-                },
-                {
-                  "label": "Fish",
-                  "value": "fish"
-                }
-              ]
-            },
-            {
-              "label": "Food",
-              "options": [
-                {
-                  "label": "Asian",
-                  "value": "asian"
-                },
-                {
-                  "label": "Boba",
-                  "value": "boba"
-                },
-                {
-                  "label": "Coffee",
-                  "value": "coffee"
-                },
-                {
-                  "label": "Italian",
-                  "value": "italian"
-                },
-                {
-                  "label": "Mexican",
-                  "value": "mexican"
-                }
-              ]
-            },
-            {
-              "label": "Hobbies",
-              "options": [
-                {
-                  "label": "Card Games",
-                  "value": "card_games"
-                },
-                {
-                  "label": "Cars",
-                  "value": "cars"
-                },
-                {
-                  "label": "Fire Dancing",
-                  "value": "fire_dancing"
-                },
-                {
-                  "label": "Music",
-                  "value": "music"
-                },
-                {
-                  "label": "Photography",
-                  "value": "photography"
-                },
-                {
-                  "label": "Pixar Movies",
-                  "value": "pixar_movies"
-                },
-                {
-                  "label": "Reading",
-                  "value": "reading"
-                },
-                {
-                  "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
-                },
-                {
-                  "label": "Video Games",
-                  "value": "video_games"
-                },
-                {
-                  "label": "Volunteering",
-                  "value": "volunteering"
-                },
-                {
-                  "label": "Watches",
-                  "value": "watches"
-                },
-                {
-                  "label": "Wrestling",
-                  "value": "wrestling"
-                }
-              ]
-            },
-            {
-              "label": "Professional Skills",
-              "options": [
-                {
-                  "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
-                },
-                {
-                  "label": "Facilitation",
-                  "value": "facilitation"
-                },
-                {
-                  "label": "ML/AI",
-                  "value": "ml_ai"
-                },
-                {
-                  "label": "Public Speaking",
-                  "value": "public_speaking"
-                }
-              ]
-            }
-          ]
+          "option_groups": option_groups
         },
         {
-          label: "Chose an interest 2",
-          name: "interests2",
+          label: "Choose a second interest",
+          name: "interest2",
           type: "select",
-          "option_groups": [
-            {
-              "label": "Pets",
-              "options": [
-                {
-                  "label": "Cats",
-                  "value": "cats"
-                },
-                {
-                  "label": "Dogs",
-                  "value": "dogs"
-                },
-                {
-                  "label": "Fish",
-                  "value": "fish"
-                }
-              ]
-            },
-            {
-              "label": "Food",
-              "options": [
-                {
-                  "label": "Asian",
-                  "value": "asian"
-                },
-                {
-                  "label": "Boba",
-                  "value": "boba"
-                },
-                {
-                  "label": "Coffee",
-                  "value": "coffee"
-                },
-                {
-                  "label": "Italian",
-                  "value": "italian"
-                },
-                {
-                  "label": "Mexican",
-                  "value": "mexican"
-                }
-              ]
-            },
-            {
-              "label": "Hobbies",
-              "options": [
-                {
-                  "label": "Card Games",
-                  "value": "card_games"
-                },
-                {
-                  "label": "Cars",
-                  "value": "cars"
-                },
-                {
-                  "label": "Fire Dancing",
-                  "value": "fire_dancing"
-                },
-                {
-                  "label": "Music",
-                  "value": "music"
-                },
-                {
-                  "label": "Photography",
-                  "value": "photography"
-                },
-                {
-                  "label": "Pixar Movies",
-                  "value": "pixar_movies"
-                },
-                {
-                  "label": "Reading",
-                  "value": "reading"
-                },
-                {
-                  "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
-                },
-                {
-                  "label": "Video Games",
-                  "value": "video_games"
-                },
-                {
-                  "label": "Volunteering",
-                  "value": "volunteering"
-                },
-                {
-                  "label": "Watches",
-                  "value": "watches"
-                },
-                {
-                  "label": "Wrestling",
-                  "value": "wrestling"
-                }
-              ]
-            },
-            {
-              "label": "Professional Skills",
-              "options": [
-                {
-                  "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
-                },
-                {
-                  "label": "Facilitation",
-                  "value": "facilitation"
-                },
-                {
-                  "label": "ML/AI",
-                  "value": "ml_ai"
-                },
-                {
-                  "label": "Public Speaking",
-                  "value": "public_speaking"
-                }
-              ]
-            }
-          ]
-          },
+          "option_groups": option_groups
+        },
         {
-          label: "Chose an interest 3",
-          name: "interests3",
+          label: "Choose a third interest",
+          name: "interest3",
           type: "select",
-          "option_groups": [
-            {
-              "label": "Pets",
-              "options": [
-                {
-                  "label": "Cats",
-                  "value": "cats"
-                },
-                {
-                  "label": "Dogs",
-                  "value": "dogs"
-                },
-                {
-                  "label": "Fish",
-                  "value": "fish"
-                }
-              ]
-            },
-            {
-              "label": "Food",
-              "options": [
-                {
-                  "label": "Asian",
-                  "value": "asian"
-                },
-                {
-                  "label": "Boba",
-                  "value": "boba"
-                },
-                {
-                  "label": "Coffee",
-                  "value": "coffee"
-                },
-                {
-                  "label": "Italian",
-                  "value": "italian"
-                },
-                {
-                  "label": "Mexican",
-                  "value": "mexican"
-                }
-              ]
-            },
-            {
-              "label": "Hobbies",
-              "options": [
-                {
-                  "label": "Card Games",
-                  "value": "card_games"
-                },
-                {
-                  "label": "Cars",
-                  "value": "cars"
-                },
-                {
-                  "label": "Fire Dancing",
-                  "value": "fire_dancing"
-                },
-                {
-                  "label": "Music",
-                  "value": "music"
-                },
-                {
-                  "label": "Photography",
-                  "value": "photography"
-                },
-                {
-                  "label": "Pixar Movies",
-                  "value": "pixar_movies"
-                },
-                {
-                  "label": "Reading",
-                  "value": "reading"
-                },
-                {
-                  "label": "Ultimate Frisbee",
-                  "value": "ultimate_frisbee"
-                },
-                {
-                  "label": "Video Games",
-                  "value": "video_games"
-                },
-                {
-                  "label": "Volunteering",
-                  "value": "volunteering"
-                },
-                {
-                  "label": "Watches",
-                  "value": "watches"
-                },
-                {
-                  "label": "Wrestling",
-                  "value": "wrestling"
-                }
-              ]
-            },
-            {
-              "label": "Professional Skills",
-              "options": [
-                {
-                  "label": "Agile Practicioner",
-                  "value": "agile_practicioner"
-                },
-                {
-                  "label": "Facilitation",
-                  "value": "facilitation"
-                },
-                {
-                  "label": "ML/AI",
-                  "value": "ml_ai"
-                },
-                {
-                  "label": "Public Speaking",
-                  "value": "public_speaking"
-                }
-              ]
-            }
-          ]
-          }
+          "option_groups": option_groups
+        }
     ]
   };
 
@@ -430,11 +197,12 @@ app.post('/optin', (req, res) => {
 app.post('/actions', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const {type, user, submission} = payload;
+  var name = user.name;
+  console.log(payload);
   if (type === 'dialog_submission') {
     var interest1 = submission.interest1;
     var interest2 = submission.interest2;
     var interest3 = submission.interest3;
-    var name = user.name;
     var attachments = [
             {
               "fallback": "You are unable to respond",
@@ -443,25 +211,25 @@ app.post('/actions', (req, res) => {
               "attachment_type": "default",
               "actions": [
                 {
-                  "name": "Accept",
+                  "name": "reply",
                   "text": "Accept",
                   "type": "button",
-                  "style": "danger",
+                  "style": "primary",
                   "value": "accept"
                 },
                 {
-                  "name": "Decline",
+                  "name": "reply",
                   "text": "Decline",
                   "type": "button",
-                  "style": "default",
+                  "style": "danger",
                   "value": "decline"
                 }
               ]
             }
           ];
     // var data = {
-    //   channel: user.id,
     //   message: {
+    //       channel: user.id,
     //       text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
     //       attachments: attachments
     //     }
@@ -474,19 +242,56 @@ app.post('/actions', (req, res) => {
     //   res.json();
     //   console.log(response.body)
     // });
+    // var im_data = {
+    //   users: user.id + ',' + user.id
+    // }
+    // var bot_channel_id = 'id';
+    //
+    // var headers = {
+    //     'Content-Type' : 'application/json',
+    //     'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    // };
+    // request.post({url: 'https://slack.com/api/conversations.open', form: im_data, headers: headers}, function (error, response, body) {
+    //   res.json();
+    //   // console.log("conversation open body: " + response.body);
+    //   bot_channel_id = JSON.parse(response.body).channel.id;
+    //   console.log()
+    // });
+    //
     var data = {form: {
-      token: "xoxb-543226806466-543395774912-xcCe7Vj2DLKVCBoM5DUoyzAo",
+      token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
-      text: "Hi! :wave: \n I'm your new bot."
+      text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+      attachments: JSON.stringify(attachments)
     }};
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
       // Sends welcome message
       res.json();
-      // console.log(response)
+      console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    res.send('');
-    console.log(payload);
+    var reply = payload.actions[0].value;
+    if (reply === 'accept') {
+      var data = {form: {
+        token: process.env.SLACK_AUTH_TOKEN,
+        channel: user.id,
+        text: `Thank you for your reply, ${name}! You have accepted the match.`
+      }};
+      request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+        res.json();
+        console.log(response.body);
+      });
+    } else if (reply === 'decline') {
+      var data = {form: {
+        token: process.env.SLACK_AUTH_TOKEN,
+        channel: user.id,
+        text: `Thank you for your reply, ${name}! You have declined the match.`
+      }};
+      request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+        res.json();
+        console.log(response.body);
+      });
+    }
   }
 });
 
