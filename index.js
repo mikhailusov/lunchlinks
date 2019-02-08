@@ -150,256 +150,35 @@ app.post('/optin', (req, res) => {
                 }
               ]
             }
-          ]
+          ];
+
+  var form = {
+    callback_id: "ryde-46e2b0",
+    title: "Join lunchlinks",
+    submit_label: "Join",
+    notify_on_cancel: true,
+    state: "Limo",
+    elements: [
+      {
+        label: "Choose a first interest",
+        name: "interest1",
+        type: "select",
+          "option_groups": option_groups
+        // },
+        // {
+        //   label: "Choose a second interest",
+        //   name: "interest2",
+        //   type: "select",
+        //   "option_groups": option_groups
+        // },
+        // {
+        //   label: "Choose a third interest",
+        //   name: "interest3",
+        //   type: "select",
+        //   "option_groups": option_groups
         }
-        // {
-        //   label: "Chose an interest 2",
-        //   name: "interests2",
-        //   type: "select",
-        //   "option_groups": [
-        //     {
-        //       "label": "Pets",
-        //       "options": [
-        //         {
-        //           "label": "Cats",
-        //           "value": "cats"
-        //         },
-        //         {
-        //           "label": "Dogs",
-        //           "value": "dogs"
-        //         },
-        //         {
-        //           "label": "Fish",
-        //           "value": "fish"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Food",
-        //       "options": [
-        //         {
-        //           "label": "Asian",
-        //           "value": "asian"
-        //         },
-        //         {
-        //           "label": "Boba",
-        //           "value": "boba"
-        //         },
-        //         {
-        //           "label": "Coffee",
-        //           "value": "coffee"
-        //         },
-        //         {
-        //           "label": "Italian",
-        //           "value": "italian"
-        //         },
-        //         {
-        //           "label": "Mexican",
-        //           "value": "mexican"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Hobbies",
-        //       "options": [
-        //         {
-        //           "label": "Card Games",
-        //           "value": "card_games"
-        //         },
-        //         {
-        //           "label": "Cars",
-        //           "value": "cars"
-        //         },
-        //         {
-        //           "label": "Fire Dancing",
-        //           "value": "fire_dancing"
-        //         },
-        //         {
-        //           "label": "Music",
-        //           "value": "music"
-        //         },
-        //         {
-        //           "label": "Photography",
-        //           "value": "photography"
-        //         },
-        //         {
-        //           "label": "Pixar Movies",
-        //           "value": "pixar_movies"
-        //         },
-        //         {
-        //           "label": "Reading",
-        //           "value": "reading"
-        //         },
-        //         {
-        //           "label": "Ultimate Frisbee",
-        //           "value": "ultimate_frisbee"
-        //         },
-        //         {
-        //           "label": "Video Games",
-        //           "value": "video_games"
-        //         },
-        //         {
-        //           "label": "Volunteering",
-        //           "value": "volunteering"
-        //         },
-        //         {
-        //           "label": "Watches",
-        //           "value": "watches"
-        //         },
-        //         {
-        //           "label": "Wrestling",
-        //           "value": "wrestling"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Professional Skills",
-        //       "options": [
-        //         {
-        //           "label": "Agile Practicioner",
-        //           "value": "agile_practicioner"
-        //         },
-        //         {
-        //           "label": "Facilitation",
-        //           "value": "facilitation"
-        //         },
-        //         {
-        //           "label": "ML/AI",
-        //           "value": "ml_ai"
-        //         },
-        //         {
-        //           "label": "Public Speaking",
-        //           "value": "public_speaking"
-        //         }
-        //       ]
-        //     }
-        //   ]
-        //   },
-        // {
-        //   label: "Chose an interest 3",
-        //   name: "interests3",
-        //   type: "select",
-        //   "option_groups": [
-        //     {
-        //       "label": "Pets",
-        //       "options": [
-        //         {
-        //           "label": "Cats",
-        //           "value": "cats"
-        //         },
-        //         {
-        //           "label": "Dogs",
-        //           "value": "dogs"
-        //         },
-        //         {
-        //           "label": "Fish",
-        //           "value": "fish"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Food",
-        //       "options": [
-        //         {
-        //           "label": "Asian",
-        //           "value": "asian"
-        //         },
-        //         {
-        //           "label": "Boba",
-        //           "value": "boba"
-        //         },
-        //         {
-        //           "label": "Coffee",
-        //           "value": "coffee"
-        //         },
-        //         {
-        //           "label": "Italian",
-        //           "value": "italian"
-        //         },
-        //         {
-        //           "label": "Mexican",
-        //           "value": "mexican"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Hobbies",
-        //       "options": [
-        //         {
-        //           "label": "Card Games",
-        //           "value": "card_games"
-        //         },
-        //         {
-        //           "label": "Cars",
-        //           "value": "cars"
-        //         },
-        //         {
-        //           "label": "Fire Dancing",
-        //           "value": "fire_dancing"
-        //         },
-        //         {
-        //           "label": "Music",
-        //           "value": "music"
-        //         },
-        //         {
-        //           "label": "Photography",
-        //           "value": "photography"
-        //         },
-        //         {
-        //           "label": "Pixar Movies",
-        //           "value": "pixar_movies"
-        //         },
-        //         {
-        //           "label": "Reading",
-        //           "value": "reading"
-        //         },
-        //         {
-        //           "label": "Ultimate Frisbee",
-        //           "value": "ultimate_frisbee"
-        //         },
-        //         {
-        //           "label": "Video Games",
-        //           "value": "video_games"
-        //         },
-        //         {
-        //           "label": "Volunteering",
-        //           "value": "volunteering"
-        //         },
-        //         {
-        //           "label": "Watches",
-        //           "value": "watches"
-        //         },
-        //         {
-        //           "label": "Wrestling",
-        //           "value": "wrestling"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       "label": "Professional Skills",
-        //       "options": [
-        //         {
-        //           "label": "Agile Practicioner",
-        //           "value": "agile_practicioner"
-        //         },
-        //         {
-        //           "label": "Facilitation",
-        //           "value": "facilitation"
-        //         },
-        //         {
-        //           "label": "ML/AI",
-        //           "value": "ml_ai"
-        //         },
-        //         {
-        //           "label": "Public Speaking",
-        //           "value": "public_speaking"
-        //         }
-        //       ]
-        //     }
-        //   ]
-        //   }
-  //   ]
-  // };
+    ]
+  };
 
   var data = {
   trigger_id: req.body.trigger_id,
@@ -475,10 +254,10 @@ app.post('/actions', (req, res) => {
       console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    var reply = payload.actions[0][value];
-    if (reply === 'yes') {
+    var reply = payload.actions[0].value;
+    if (reply === 'accept') {
       var data = {form: {
-        token: process.env.SLACK_AUTH_TOKEN,
+        token: process.env.SLACK_BOT_TOKEN,
         channel: user.id,
         text: `Thank you for your reply, ${name}! You have accepted the match.`
       }};
@@ -486,7 +265,7 @@ app.post('/actions', (req, res) => {
         res.json();
         console.log(response.body);
       });
-    } else if (reply === 'no') {
+    } else if (reply === 'decline') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
         channel: user.id,
