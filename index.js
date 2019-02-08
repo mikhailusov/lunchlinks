@@ -418,12 +418,12 @@ app.post('/optin', (req, res) => {
 app.post('/actions', (req, res) => {
   const payload = JSON.parse(req.body.payload);
   const {type, user, submission} = payload;
+  var name = user.name;
   console.log(payload);
   if (type === 'dialog_submission') {
     var interest1 = submission.interest1;
     var interest2 = submission.interest2;
     var interest3 = submission.interest3;
-    var name = user.name;
     var attachments = [
             {
               "fallback": "You are unable to respond",
@@ -475,7 +475,7 @@ app.post('/actions', (req, res) => {
       console.log(response.body);
     });
   } else if (type === 'interactive_message') {
-    var reply = payload.reply
+    var reply = payload.actions[0][value];
     if (reply === 'yes') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
@@ -486,7 +486,7 @@ app.post('/actions', (req, res) => {
         res.json();
         console.log(response.body);
       });
-    } else {
+    } else if (reply === 'no') {
       var data = {form: {
         token: process.env.SLACK_AUTH_TOKEN,
         channel: user.id,
