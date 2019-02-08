@@ -164,18 +164,18 @@ app.post('/optin', (req, res) => {
         name: "interest1",
         type: "select",
           "option_groups": option_groups
-        // },
-        // {
-        //   label: "Choose a second interest",
-        //   name: "interest2",
-        //   type: "select",
-        //   "option_groups": option_groups
-        // },
-        // {
-        //   label: "Choose a third interest",
-        //   name: "interest3",
-        //   type: "select",
-        //   "option_groups": option_groups
+        },
+        {
+          label: "Choose a second interest",
+          name: "interest2",
+          type: "select",
+          "option_groups": option_groups
+        },
+        {
+          label: "Choose a third interest",
+          name: "interest3",
+          type: "select",
+          "option_groups": option_groups
         }
     ]
   };
@@ -227,47 +227,48 @@ app.post('/actions', (req, res) => {
               ]
             }
           ];
-    // var data = {
-    //   channel: user.id,
-    //   message: {
-    //       text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
-    //       attachments: attachments
-    //     }
-    // };
-    // var headers = {
-    //     'Content-Type' : 'application/json',
-    //     'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
-    // };
-    // request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
-    //   res.json();
-    //   console.log(response.body)
-    // });
-    var im_data = {
-      users: user.id + ',' + user.id
-    }
-    var bot_channel_id = 'id';
-
+    var data = {
+      channel: user.id,
+      message: {
+          text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+          attachments: attachments
+        }
+    };
     var headers = {
         'Content-Type' : 'application/json',
         'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
     };
-    request.post({url: 'https://slack.com/api/conversations.open', form: im_data, headers: headers}, function (error, response, body) {
+    request.post({url: 'https://slack.com/api/chat.postMessage', form: data, headers: headers}, function (error, response, body) {
       res.json();
-      // console.log("conversation open body: " + response.body);
-      bot_channel_id = JSON.parse(response.body).channel.id;
+      console.log(response.body)
     });
-
-    var data = {form: {
-      token: process.env.SLACK_AUTH_TOKEN,
-      channel: bot_channel_id,
-      text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
-      attachments: JSON.stringify(attachments)
-    }};
-    request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
-      // Sends welcome message
-      res.json();
-      console.log(response.body);
-    });
+    // var im_data = {
+    //   users: user.id + ',' + user.id
+    // }
+    // var bot_channel_id = 'id';
+    //
+    // var headers = {
+    //     'Content-Type' : 'application/json',
+    //     'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    // };
+    // request.post({url: 'https://slack.com/api/conversations.open', form: im_data, headers: headers}, function (error, response, body) {
+    //   res.json();
+    //   // console.log("conversation open body: " + response.body);
+    //   bot_channel_id = JSON.parse(response.body).channel.id;
+    //   console.log()
+    // });
+    //
+    // var data = {form: {
+    //   token: process.env.SLACK_AUTH_TOKEN,
+    //   channel: bot_channel_id,
+    //   text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
+    //   attachments: JSON.stringify(attachments)
+    // }};
+    // request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
+    //   // Sends welcome message
+    //   res.json();
+    //   console.log(response.body);
+    // });
   } else if (type === 'interactive_message') {
     var reply = payload.actions[0].value;
     if (reply === 'accept') {
