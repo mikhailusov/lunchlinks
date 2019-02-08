@@ -243,7 +243,7 @@ app.post('/actions', (req, res) => {
     //   console.log(response.body)
     // });
     var im_data = {
-      users: user.id + ',BFZUKRM1A'
+      users: user.id + ',' + user.id
     }
     var bot_channel_id = 'id';
 
