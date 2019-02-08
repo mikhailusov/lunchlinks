@@ -10,7 +10,7 @@ const web = new WebClient(token);
 // Creates express app
 const app = express();
 // The port used for Express server
-const PORT = 4390;
+const PORT = 3000;
 // Starts server
 app.listen(process.env.PORT || PORT, function() {
   console.log('Bot is listening on port ' + PORT);
@@ -242,9 +242,20 @@ app.post('/actions', (req, res) => {
     //   res.json();
     //   console.log(response.body)
     // });
+    var im_data = {
+      token: process.env.SLACK_AUTH_TOKEN,
+      users: user.id + ',BFZUKRM1A'
+    }
+    var bot_channel_id = 'id'
+    request.post('https://slack.com/api/conversations.open', im_data, function (error, response, body) {
+      // Sends welcome message
+      res.json();
+      console.log(response.body);
+      bot_channel_id = response.body.channel.id;
+    });
     var data = {form: {
       token: process.env.SLACK_AUTH_TOKEN,
-      channel: user.id,
+      channel: bot_channel_id,
       text: `Hello ${name}! You have been matched with someone who shares the following interests as you: ${interest1}, ${interest2}, ${interest3}. Please accept or decline this match.`,
       attachments: JSON.stringify(attachments)
     }};
