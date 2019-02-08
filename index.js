@@ -243,16 +243,20 @@ app.post('/actions', (req, res) => {
     //   console.log(response.body)
     // });
     var im_data = {
-      token: process.env.SLACK_AUTH_TOKEN,
       users: user.id + ',BFZUKRM1A'
     }
-    var bot_channel_id = 'id'
-    request.post('https://slack.com/api/conversations.open', im_data, function (error, response, body) {
-      // Sends welcome message
+    var bot_channel_id = 'id';
+
+    var headers = {
+        'Content-Type' : 'application/json',
+        'Authorization': 'Bearer ' + process.env.SLACK_AUTH_TOKEN
+    };
+    request.post({url: 'https://slack.com/api/conversations.open', form: im_data, headers: headers}, function (error, response, body) {
       res.json();
       console.log(response.body);
       bot_channel_id = response.body.channel.id;
     });
+
     var data = {form: {
       token: process.env.SLACK_AUTH_TOKEN,
       channel: bot_channel_id,
