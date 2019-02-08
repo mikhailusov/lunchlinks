@@ -88,10 +88,10 @@ def combine_dictionaries(d1, d2):
     weight2 = 0.5
 
     for k in d1:
+        d3[k] = d1[k] * weight1
         if k in d2:
-            d3[k] = weight1 * d1[k] + weight2 * d2[k]
-        else:
-            d3[k] = d1[k] * weight2
+            d3[k] += weight2 * d2[k]
+
     return d3
 
 def run():
