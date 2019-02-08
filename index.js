@@ -253,8 +253,8 @@ app.post('/actions', (req, res) => {
     };
     request.post({url: 'https://slack.com/api/conversations.open', form: im_data, headers: headers}, function (error, response, body) {
       res.json();
-      console.log("conversation open body: " + response.body.channel);
-      bot_channel_id = response.body.channel;
+      // console.log("conversation open body: " + response.body);
+      bot_channel_id = JSON.parse(response.body).channel.id;
     });
 
     var data = {form: {
