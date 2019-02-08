@@ -1,10 +1,7 @@
 from __future__ import division
 from slackclient import SlackClient
 import os
-import pprint
 import operator
-
-pp = pprint.PrettyPrinter(indent=4)
 
 CURR_USER_ID = "UFZRUAEUC"
 CURR_USER_NAME = "Michael Ma"
@@ -26,7 +23,7 @@ def normalize_dict(dict):
 
     return dict
 
-# TODO: currently interest words are hard-coded. Need to take these keywords from UI
+# TODO: currently the user's interest words are hard-coded. Need to take these keywords from UI
 # award points for people who mention your selected interest keywords
 def get_interest_score():
     interest_score_dict = {}
@@ -38,7 +35,7 @@ def get_interest_score():
         messages = curr_channel_history['messages']
 
         for message in messages:
-            # bots don't have a user key
+            # bots don't have a user key, skip them
             if 'user' not in message:
                 continue
 
@@ -46,7 +43,7 @@ def get_interest_score():
             user_id = message['user']
 
             for word in INTEREST_KEYWORDS:
-                if word in text:
+                if word.lower() in text.lower():
                     if user_id not in interest_score_dict:
                         interest_score_dict[user_id] = 1
                     else:
@@ -151,12 +148,11 @@ def find_best_match():
 
     final_dict = translate_dictionary(combined_dict)
 
-    print(final_dict)
-
     desc_order_tuples = sorted(final_dict.items(), key=operator.itemgetter(1), reverse=True)
 
     ranked_user_names = [tup[0] for tup in desc_order_tuples]
 
+    print(desc_order_tuples)
     print(ranked_user_names)
     return ranked_user_names
 
