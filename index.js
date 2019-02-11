@@ -261,7 +261,7 @@ app.post('/actions', (req, res) => {
     var data = {form: {
       token: process.env.SLACK_AUTH_TOKEN,
       channel: user.id,
-      text: `Hello ${name}! You have been matched with Michael Ma, who shares the following interests with you: ${interest1}, ${interest2}. Please accept or decline this match.`,
+      text: `Hello ${name}! You have been matched with Kimberly Yu, who shares the following interests with you: ${interest1}, ${interest2}. Please accept or decline this match.`,
       attachments: JSON.stringify(attachments)
     }};
     request.post('https://slack.com/api/chat.postMessage', data, function (error, response, body) {
